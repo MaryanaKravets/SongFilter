@@ -1,4 +1,5 @@
 package text;
+
 import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,19 +8,20 @@ import java.io.BufferedReader;
 import java.util.List;
 import java.util.Arrays;
 
- final class Main {
-     private Main() {
-     }
+final class Main {
+    private Main() {
+    }
+
     public static void main(final String[] args) throws IOException {
         String s;
         String s1 = "";
 
         File file = new File("data.txt");
         try (FileWriter fw = new FileWriter(file)) {
-            fw.write("You float like a feather \nIn a beautiful world"
-                    + "\nAnd I wish I was special\nYou are so fucking"
-                    + "special \nI want you to notice \n When I am not around"
-                    +  "\nYou are so fucking special \n I wish I was special");
+            fw.write("You float like a feather \n In a beautiful world"
+                    + "\n And I wish I was special \n You are so fucking"
+                    + " special \n I want you to notice \n When I am not around"
+                    + "\n You are so fucking special \n I wish I was special");
         }
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             while ((s = br.readLine()) != null) {

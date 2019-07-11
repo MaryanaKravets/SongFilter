@@ -1,4 +1,5 @@
 package text;
+
 import java.util.List;
 import java.util.TreeMap;
 import java.util.Map;
@@ -6,13 +7,20 @@ import java.util.stream.Collectors;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-final class SongFilter { /** The length of words .*/
+final class SongFilter {
+    /**
+     * The length of words .
+     */
     private static final int LENGTH_CONDITION = 3;
-/** By default, the value {@value SongFilter#LENGTH_CONDITION}.*/
+    /**
+     * By default, the value {@value SongFilter#LENGTH_CONDITION}.
+     */
     private static int lenthCond = LENGTH_CONDITION;
+
     private static int getLengthCond() {
         return lenthCond;
     }
+
     private SongFilter() {
     }
 
