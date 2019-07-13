@@ -30,17 +30,17 @@ final class SongFilter {
 
     static void wordFilter(final List<String> list) {
         list.stream()
-                .filter(i -> ((i.length() > getLengthCond())
+                .filter(i -> ((i.length() >= getLengthCond())
                         && !i.equalsIgnoreCase("fucking")))
                 .forEach(System.out::println);
     }
 
     static void wordByCondition(final List<String> list) {
         List<String> list1 = list.stream()
-                .filter(i -> ((i.length() <= getLengthCond())
+                .filter(i -> ((i.length() < getLengthCond())
                         || i.equalsIgnoreCase("fucking")))
                 .collect(Collectors.toList());
-        System.out.println("Words with length less or equals"
+        System.out.println("Words with length less"
                 + " three or bad words:\n" + list1);
         System.out.println("Size:" + list1.size());
     }

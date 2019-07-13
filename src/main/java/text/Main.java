@@ -19,8 +19,8 @@ final class Main {
         File file = new File("data.txt");
         try (FileWriter fw = new FileWriter(file)) {
             fw.write("You float like a feather \n In a beautiful world"
-                    + "\n And I wish I was special \n You are so fucking"
-                    + " special \n I want you to notice \n When I am not around"
+                    + "\n And I wish I was special \n You're so fucking"
+                    + " special \n I want you to notice \n When I'm not around"
                     + "\n You are so fucking special \n I wish I was special");
         }
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -28,7 +28,7 @@ final class Main {
                 s1 = s1.concat(s);
             }
             List<String> list = Arrays
-                    .asList(s1.split("[\\p{Punct}\\p{Space}]+"));
+                    .asList(s1.split("[[\\p{Punct}&&[^']]\\p{Space}]+"));
             System.out.println("A number of words in song is: "
                     + SongFilter.countOfWords(list));
             System.out.println("Song without bad words and all"
