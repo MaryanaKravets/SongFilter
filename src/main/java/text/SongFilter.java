@@ -1,43 +1,41 @@
 package text;
 
-import java.util.List;
-import java.util.TreeMap;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Scanner;
-import java.util.InputMismatchException;
 
 final class SongFilter {
     /**
      * The length of words .
      */
     private static final int LENGTH_CONDITION = 3;
+
     /**
      * By default, the value {@value SongFilter#LENGTH_CONDITION}.
      */
-    private static int lenthCond = LENGTH_CONDITION;
-
-    private static int getLengthCond() {
-        return lenthCond;
+    List<String> convertFileToListOfWords(File file) throws IOException {
+        String s;
+        String s1 = "";
+        try (
+                BufferedReader br = new BufferedReader(new FileReader(file))) {
+            while ((s = br.readLine()) != null) {
+                s1 = s1.concat(s);
+            }
+        }
+        return Arrays
+                .asList(s1.split("[[\\p{Punct}&&[^']]\\p{Space}]+"));
     }
 
-    private SongFilter() {
-    }
-
-    static int countOfWords(final List<String> list) {
-        return list.size();
-    }
-
-    static void wordFilter(final List<String> list) {
+    void printFilteredSong(final List<String> list) {
         list.stream()
-                .filter(i -> ((i.length() >= getLengthCond())
+                .filter(i -> ((i.length() >= LENGTH_CONDITION)
                         && !i.equalsIgnoreCase("fucking")))
                 .forEach(System.out::println);
     }
 
-    static void wordByCondition(final List<String> list) {
+    void printExceptionalWords(final List<String> list) {
         List<String> list1 = list.stream()
-                .filter(i -> ((i.length() < getLengthCond())
+                .filter(i -> ((i.length() < LENGTH_CONDITION)
                         || i.equalsIgnoreCase("fucking")))
                 .collect(Collectors.toList());
         System.out.println("Words with length less"
@@ -45,7 +43,7 @@ final class SongFilter {
         System.out.println("Size:" + list1.size());
     }
 
-    static void freqOfWords(final List<String> list) {
+    void printFrequencyOfWords(final List<String> list) {
         Map<String, Integer> freq = new TreeMap<>();
         list.forEach(word -> freq.merge(word, 1, Integer::sum));
         System.out.println("How many times a word occur:\n " + freq);
